@@ -1,0 +1,12 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix clerk-react",
+    "build": "npm run build --prefix clerk-react",
+    "preview": "npm run preview --prefix clerk-react",
+    "install": "npm install --prefix clerk-react"
+  }
+}
+
