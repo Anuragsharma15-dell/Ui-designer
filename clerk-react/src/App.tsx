@@ -1,17 +1,20 @@
+
+import { Children } from 'react';
 import './App.css'
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+
+
+import Navbar from './Components/Navbar';
+import { ThemeProvider } from './Components/theme-provider';
+ 
 
 function App() {
   return (
+    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
     <header>
-      <SignedOut>
-        <SignInButton />
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
+     <Navbar/>
     </header>
+    </ThemeProvider>
   );
-}
+};
 
-export default App
+export default App;
