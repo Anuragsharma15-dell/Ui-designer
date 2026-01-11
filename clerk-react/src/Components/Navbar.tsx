@@ -1,14 +1,17 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Sparkles, Sun, Moon } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
+import { useTheme } from './theme-provider';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState('light');
+  const { theme, setTheme } = useTheme();
+  const location = useLocation();
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Home', href: '/' },
+    { name: 'Pricing', href: '/pricing' },
   ];
 
   const toggleTheme = () => {
@@ -26,31 +29,31 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
               <Sparkles className="w-4 h-4 text-white" strokeWidth={2.5} />
             </div>
             <span className={`text-lg font-semibold tracking-tight ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}>
-              DesignAI
+              UIUX MOCK
             </span>
-          </a>
+          </Link>
 
           {/* Center Navigation Links - Desktop */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className={`px-4 py-2 text-sm transition-colors rounded-lg ${
                   isDark 
                     ? 'text-gray-300 hover:text-white hover:bg-gray-800' 
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                }`}
+                } ${location.pathname === link.href ? 'bg-gray-800 dark:bg-gray-700' : ''}`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -115,9 +118,9 @@ export default function Navbar() {
         }`}>
           <div className="px-6 py-4 space-y-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className={`block px-4 py-2.5 text-sm transition-colors rounded-lg ${
                   isDark 
                     ? 'text-gray-300 hover:text-white hover:bg-gray-800' 
@@ -126,7 +129,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             
             {/* Mobile Theme Toggle */}

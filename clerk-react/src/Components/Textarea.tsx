@@ -1,5 +1,5 @@
-import {Textarea as UITextarea} from "./ui/textarea";
+import UITextarea from "./ui/textarea";
 
-export default function Textarea({children}:{children?:React.ReactNode}) {
-    return <UITextarea>{children}</UITextarea>;
+export default function Textarea(props: React.ComponentProps<"textarea">) {
+    return <UITextarea {...props} />;
 }
